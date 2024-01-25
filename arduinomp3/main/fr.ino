@@ -38,6 +38,8 @@ void setup()
  
   command(0x06, 0x001E); // Réglage du volume à 30
   command(0x03, 0x0001); // Lecture de la première piste (dans l'ordre non trié)
+  //delay(10000);
+  //command(0x0D, 0x0000); // Lecture de tous les fichiers MP3
 }
  
 // Boucle principale vide

@@ -1,5 +1,7 @@
 #include <SoftwareSerial.h>
 
+SoftwareSerial mainCommandeSerial(2, 3); //commande
+
 SoftwareSerial mp3(5, 6); // Utilisation de SoftwareSerial pour communiquer avec le module MP3 (RX = 5, TX = 6)
 
 static uint8_t cmdbuf[8] = {0}; // Tableau pour stocker les commandes à envoyer au module MP3
@@ -37,19 +39,19 @@ void command(int8_t cmd, int16_t dat) {
 }
 
 void setup() {
-  Serial.begin(9600);  // Communication série avec le PC
   mp3.begin(9600);     // Communication avec le module MP3
-  Serial.println("Démarrage du lecteur MP3");
+  delay(200); 
+  mainCommandeSerial.begin(9600); // Communication avec le main
   delay(500); // Attente pour l'initialisation
   command(CMD_SEL_DEV, 0x0002); // Sélection de la carte SD
   delay(200);
-  command(CMD_SET_VOL, 0x001E); // Volume initial à 30
+  command(CMD_SET_VOL, 0x0010); // Volume initial à 30
   command(CMD_PLAYN, 0x0001);   // Lecture de la première piste
 }
 
 void loop() {
-  if (Serial.available() > 0) {
-    String commandInput = Serial.readStringUntil('\n'); // Lecture de la commande du port série
+  if (mainCommandeSerial.available() > 0) {
+    String commandInput = mainCommandeSerial.readStringUntil('\n'); // Lecture de la commande du port série
 
     // Analyse et exécution des commandes
     if (commandInput == "next") {
@@ -66,9 +68,9 @@ void loop() {
     } else if (commandInput.startsWith("volume ")) {
       int volume = commandInput.substring(7).toInt();
       command(CMD_SET_VOL, volume); // Définir un niveau de volume spécifique
-    } else if (commandInput == "pause") {
+    } else if (commandInput == "P") {
       command(CMD_PAUSE, 0); // Mettre la lecture en pause
-    } else if (commandInput == "resume") {
+    } else if (commandInput == "R") {
       command(CMD_PLAY, 0); // Reprendre la lecture
     } else if (commandInput == "stop") {
       command(CMD_STOP_PLAY, 0); // Arrêter la lecture

@@ -1,23 +1,28 @@
 void setup() {
-  Serial.begin(9600);
-  Serial1.begin(9600); // Utiliser Serial1 pour le module Bluetooth 1
-  Serial2.begin(9600); // Utiliser Serial2 pour le module Bluetooth 2
+  Serial1.begin(9600); // Communication avec le téléphone (maître)
+  Serial2.begin(9600); // Communication avec l'esclave
+  Serial3.begin(9600); // Communication avec Musique
+  Serial.begin(9600); // Communication avec l'esclave
 }
 
 void loop() {
-  // Si des données sont disponibles sur le module Bluetooth 1, les envoyer au module 2
+  // Lire les données du téléphone (maître) et les envoyer à l'esclave
   if (Serial1.available()) {
     char data = Serial1.read();
-    Serial.print("Module 1 -> Module 2: ");
-    Serial.println(data);
     Serial2.write(data);
   }
 
-  // Si des données sont disponibles sur le module Bluetooth 2, les envoyer au module 1
+  // Lire les données de l'esclave et les envoyer au téléphone (maître)
   if (Serial2.available()) {
     char data = Serial2.read();
-    Serial.print("Module 2 -> Module 1: ");
-    Serial.println(data);
     Serial1.write(data);
+  }
+  
+  if (Serial3.available()) {
+    char data = Serial3.read();
+    Serial.write(data);
+    Serial1.write(data);
+    Serial2.write(data);
+    Serial3.write(data);
   }
 }

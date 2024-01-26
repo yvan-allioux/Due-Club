@@ -43,4 +43,7 @@ void setup()
 }
  
 // Boucle principale vide
-void loop() { }
+void loop() {
+  command(0x01, 0); // Commande pour passer à la piste suivante
+  delay(500);
+}

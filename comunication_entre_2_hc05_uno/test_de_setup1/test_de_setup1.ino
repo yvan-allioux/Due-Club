@@ -1,3 +1,4 @@
+//MAITRE
 #include <SoftwareSerial.h>
 
 // Pins pour SoftwareSerial (RX, TX)
@@ -24,17 +25,29 @@ void setup() {
   // Attendre que le module HC-05 soit prêt
   delay(1000);
 
-  // Envoyer les commandes AT pour la configuration
-  sendATCommand("AT+ADDR?");
+  // Envoyer les commandes AT pour la configuration 
+  sendATCommand("AT");
+  sendATCommand("AT+ORGL");
+  sendATCommand("AT+IAC?"); 
+
+  sendATCommand("AT+NAME=MAITRE");
+  sendATCommand("AT+NAME?");
+
+  sendATCommand("AT+PSWD=1234");
+
   sendATCommand("AT+RMAAD");
   sendATCommand("AT+ROLE=1");
-  sendATCommand("AT+CMODE=0");
-  // Remplacez par l'adresse module esclave IDUINO 98d3:51:fe0b54   111330 98d3:31:f61b53 38400 98d3:32:70f6c1
-  //sendATCommand("AT+BIND=98d3,51,fe0b54"); //IDUINO 98d3:51:fe0b54
-  //sendATCommand("AT+BIND=98d3,31,f61b53"); //111330 98d3:31:f61b53
-  sendATCommand("AT+BIND=98d3,32,70f6c1"); //38400 98d3:32:70f6c1
   sendATCommand("AT+UART=38400,0,0");
-  //sendATCommand("AT+PSWD=1245"); // Définir le mot de passe
+  // Remplacez par l'adresse module esclave IDUINO 98d3:51:fe0b54   111330 98d3:31:f61b53 38400 98d3:32:70f6c1
+  sendATCommand("AT+BIND=98d3,51,fe0b54"); //IDUINO 98d3:51:fe0b54
+  //sendATCommand("AT+BIND=98d3,31,f61b53"); //111330 98d3:31:f61b53
+  //sendATCommand("AT+BIND=98d3,32,70f6c1"); //38400 98d3:32:70f6c1
+
+  sendATCommand("AT+CMODE=0");
+  
+  //sendATCommand("AT+INIT");
+  //AT+INIT mode qui permet l'appairage
+  //AT+INQ" pour détecter l'Esclave
 
   // Désactiver le mode AT
   digitalWrite(hc05_at_control_pin, LOW);

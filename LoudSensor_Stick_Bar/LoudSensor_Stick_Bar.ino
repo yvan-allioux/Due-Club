@@ -79,7 +79,7 @@ void handleCommand(char command)
     switch (command)
     {
     case 'B':
-        // Éteindre tout
+        // Éteindre led
         for (int i = 0; i < numLeds; i++)
         {
             digitalWrite(leds[i], LOW);
@@ -88,7 +88,7 @@ void handleCommand(char command)
 
         break;
     case 'A':
-        // Allumer tout
+        // Allumer led
         for (int i = 0; i < numLeds; i++)
         {
             digitalWrite(leds[i], HIGH);
@@ -102,23 +102,19 @@ void handleCommand(char command)
 
             if (barValue < 3)
             {
-                Serial.println("Silencieux");
                 Serial2.write("1");
             }
             else if (barValue < 6)
             {
-                Serial.println("Modéré");
                 Serial2.write("2");
             }
             else
             {
-                Serial.println("Bruyant");
                 Serial2.write("3");
             }
         }
         else
         {
-            Serial.println("Maximum");
             Serial2.write("4");
         }
         break;
@@ -130,26 +126,21 @@ void handleCommand(char command)
 
             if (barValue < 3)
             {
-                Serial.println("Silencieux");
                 Serial2.write("1");
             }
             else if (barValue < 6)
             {
-                Serial.println("Modéré");
                 Serial2.write("2");
             }
             else
             {
-                Serial.println("Bruyant");
                 Serial2.write("3");
             }
         }
         else
         {
-            Serial.println("Minimum");
             Serial2.write("0");
         }
         break;
-        // Ajoutez d'autres cas pour d'autres commandes au besoin
     }
 }

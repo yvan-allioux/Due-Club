@@ -1,3 +1,4 @@
+
 // Led stick
 #include "Adafruit_NeoPixel.h"
 #ifdef __AVR__
@@ -34,7 +35,7 @@ void setup()
   if (F_CPU == 16000000)
     clock_prescale_set(clock_div_1);
 #endif
-  Serial2.begin(9600); // Communication with Phone
+  Serial2.begin(38400); // Communication with Phone
   
   // Led Stick
   led_stick.begin();

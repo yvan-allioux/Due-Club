@@ -52,7 +52,7 @@ void command(int8_t cmd, int16_t dat)
 void setup()
 {
 
-  Serial2.begin(9600); // Communication with Phone
+  Serial2.begin(38400); // Communication with Phone
   pinMode(ledPin, OUTPUT);
   delay(500); // Wait for the module to initialize
 

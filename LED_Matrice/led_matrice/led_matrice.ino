@@ -15,7 +15,7 @@ void setup() {
   myDisplay.begin();
   myDisplay.setIntensity(4);
   myDisplay.displayClear();
-  myDisplay.displayScroll("Due Club", PA_CENTER, PA_SCROLL_LEFT, 200);
+  myDisplay.displayScroll("Due Club             Welcome To The Party            <3            ", PA_CENTER, PA_SCROLL_LEFT, 50);
 }
  
 void loop() {

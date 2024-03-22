@@ -58,6 +58,8 @@ La carte maître joue un rôle central en assurant la connexion entre l'applicat
 
 L'application permet de contrôler via Bluetooth le son et la lumière et d'afficher la remontée d'information du module LED Bar pour connaître son état. L'interface de l'application se compose de différents boutons permettant d'envoyer les commandes à la carte maître.
 
+![image d'ilustration](/assets/3.png)
+
 ### Carte esclave pour la gestion du son
 
 La gestion du son a été rendue possible grâce à l'utilisation d'une carte son et d'une carte SD. Ces composants ont permis de stocker des morceaux de musique et de les lire à la demande. Parallèlement, l'intégration d'un module Bluetooth a permis la réception des commandes émanant de l'application.

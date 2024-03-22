@@ -3,7 +3,7 @@ DueClub
 
 Mini-scène pour les playmobils qui aiment faire la fête !
 
-![image d'ilustration dalle](/assets/DALLE.jpg)
+![image d'ilustration dalle](/assets/DALLE.png)
 
 Sommaire
 --------
